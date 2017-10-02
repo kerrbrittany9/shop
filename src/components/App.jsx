@@ -1,11 +1,13 @@
 import React from "react";
-import styles from "./../styles/App.css";
+import Header from  "./Header";
+import Shop from "./Shop";
 
 function App(){
   return (
-    <div className = {styles.app}>
-      <div className = {styles.container}>
-        <h1>hello world!</h1>
+    <div>
+      <div>
+        <Header/>
+        <Shop/>
       </div>
     </div>
   );
