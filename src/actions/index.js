@@ -1,5 +1,4 @@
-var AppDispatcher = require('../dispatcher/AppDispatcher');
-var CartConstants = require('../constants/CartConstants');
+import * as types from "./../constants/ActionTypes";
 
 //Define actions object
 

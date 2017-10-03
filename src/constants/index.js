@@ -1,6 +1,5 @@
-var keyMirror = require('react/lib/keyMirror');
+import * as types from "./ActionTypes";
 
-//Define action constants
-module.exports = keyMirror({
-
-});
+export default {
+  types: types
+};
