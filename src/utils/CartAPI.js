@@ -1,8 +1,8 @@
-var FluxCartActions = require('../actions/FluxCartActions');
+var CartActions = require('../actions/CartActions');
 
 module.exports = {
   getProductData: function() {
     var data = JSON.parse(localStorage.getItem('product'));
-    FluxCartActions.receiveProduct(data);
+    CartActions.receiveProduct(data);
   }
 };
