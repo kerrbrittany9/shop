@@ -1,6 +1,7 @@
 import React from 'react';
 import Product from './Product';
 import Cart from './Cart';
+import Header from './Header';
 import { Switch, Route } from 'react-router-dom';
 
 

@@ -6,24 +6,27 @@ export const requestData = () => ({
 
 export const receiveData = () => ({
   type: types.RECEIVE_DATA,
+  data
 });
 
 export const selectProductRepo = () => ({
   type: types.SELECT_PRODUCT,
-
+  sku
 });
 
 export const addToCart = () => ({
   type: types.CART_ADD,
+  products
 });
 
 export const removeFromCart = () => ({
   type: types.CART_REMOVE,
-
+  sku
 });
 
 export const updateCartVisible = () => ({
   type: types.CART_VISIBLE,
+  cartVisible
 });
 
 
@@ -35,5 +38,5 @@ export function getProductData() {
     dispatch(requestData());
   } return fetch()
   let data = JSON.parse(localStorage.getItem('product'));
-  CartActions.receiveProduct(data);
+  dispatch(receiveProduct(data));
 }

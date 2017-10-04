@@ -1,0 +1,26 @@
+1. refactor all of kens code
+2. have project
+
+1. set up a basic project
+2. default state
+
+{
+  store: [
+    {
+      key: value
+    },
+    {
+
+    }
+  ],
+  cart: [
+
+  ]
+}
+
+3. build component structure
+4. display state
+
+5. modify state
+  a. simple action
+  b. next action

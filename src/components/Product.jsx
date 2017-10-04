@@ -1,5 +1,5 @@
 import React from 'react';
-import ProductStore from '../stores/ProductStore';
+import { connect } from 'react-redux';
 
 // Flux product view
 class Product extends React.Component {
@@ -7,19 +7,8 @@ class Product extends React.Component {
     super(props);
   }
 
-  // Remove change listers from stores
-  componentWillUnmount() {
-    dispatch(removeChangeListener(this._onChange));
-    dispatch(removeChangeListener(this._onChange));
-  }
   // Add item to cart via Actions
   addToCart(event){
-    var sku = this.props.selected.sku;
-    var update = {
-      name: this.props.product.name,
-      type: this.props.selected.type,
-      price: this.props.selected.price
-    }
     dispatch(addToCart(sku, update));
     dispatch(updateCartVisible(true));
   }
@@ -28,25 +17,12 @@ class Product extends React.Component {
   selectVariant(event){
     dispatch(selectProduct(event.target.value));
   }
+
   render() {
     return (
-      <div className="flux-product">
-        <img src={'img/' + this.props.product.image}/>
-        <div className="flux-product-detail">
-          <h1 className="name">{this.props.product.name}</h1>
-          <p className="description">{this.props.product.description}</p>
-          <p className="price">Price: ${this.props.selected.price}</p>
-          <select onChange={this.selectVariant}>
-            {this.props.product.variants.map(function(variant, index){
-              return (
-                <option key={index} value={index}>{variant.type}</option>
-              )
-            })}
-          </select>
-          <button type="button" onClick={this.addToCart} disabled={ats  > 0 ? '' : 'disabled'}>
-            {ats > 0 ? 'Add To Cart' : 'Sold Out'}
-          </button>
-        </div>
+      <div>
+          <h1>{this.props.products.name}</h1>
+          <p>{this.props.products.description}</p>
       </div>
     );
   }
@@ -55,7 +31,7 @@ class Product extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    masterProducts: state
+    products: state.products
   }
 }
 
