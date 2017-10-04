@@ -15,16 +15,20 @@ class Product extends React.Component {
 
     var shopStyle = {
       backgroundImage: "url(" + Background + ")",
-      height: '980px',
+      height: '200px',
       width: '1000px',
       backgroundRepeat: 'no-repeat',
-      marginLeft: '330px',
+      marginLeft: '230px',
       paddingTop: '10px'
     };
     return (
       <div style={shopStyle}>
         <h1>Newest Products</h1>
-
+        <ul>
+        {this.props.products.map(function(product) {
+          return <li key={product.sku}>{product.product}</li>
+        })}
+        </ul>
       </div>
     );
   }
@@ -33,7 +37,7 @@ class Product extends React.Component {
 const mapStateToProps = state => {
   console.log(state);
   return {
-    products: state.store.products
+    products: state.store
   }
 }
 
