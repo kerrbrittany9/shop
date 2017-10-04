@@ -2,15 +2,13 @@ import constants from "./../constants";
 
 const { defaultState, types } = constants;
 
-
-// Create dispatcher instance
 const productReducer = (state = defaultState, action) => {
   let newState;
     switch (action.type) {
       //requestData
       case types.REQUEST_DATA:
         newState = {
-          data: []
+          inCart: false
         };
         return newState;
       //receiveProduct
@@ -25,9 +23,27 @@ const productReducer = (state = defaultState, action) => {
           data: index
         };
         return newState;
+      case types.CART_ADD:
+        newState = {
+          sku: action.sku,
+          update: action.update
+        };
+        return newState;
+      //removeFromCart
+      case types.CART_REMOVE:
+        newState = {
+          sku: action.sku
+        };
+        return newState
+      //updateCartVisible
+      case types.CART_VISIBLE:
+        newState = {
+          cartVisible: action.cartVisible
+        };
+        return newState;
       default:
-      return state;
+        return state;
+      }
   }
-}
 
 export default productReducer;

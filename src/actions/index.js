@@ -2,6 +2,7 @@ import * as types from "./../constants/ActionTypes";
 
 export const requestData = () => ({
   type: types.REQUEST_DATA,
+  products
 });
 
 export const receiveData = () => ({
@@ -28,10 +29,6 @@ export const updateCartVisible = () => ({
   type: types.CART_VISIBLE,
   cartVisible
 });
-
-
-
-//Define actions object
 
 export function getProductData() {
   return function (dispatch) {

@@ -3,9 +3,17 @@ import { Link } from 'react-router-dom';
 
 function Header(props) {
 
+  var headerStyle = {
+    margin: '10',
+    height: '100',
+    backgroundColor: 'pink',
+    color: 'white'
+  }
+
   return (
-    <div>
+    <div style={headerStyle}>
       <h1>Shop Yoga</h1>
+      <br/>
       <Link to="/cart">Cart</Link> | <Link to="/products">Shop</Link>
     </div>
   );

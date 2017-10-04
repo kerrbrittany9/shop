@@ -1,37 +1,39 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import constants from './../constants';
+import PropTypes from 'prop-types';
+import Background from "./../../img/yoga-pose.jpg";
 
-// Flux product view
 class Product extends React.Component {
   constructor(props) {
     super(props);
   }
 
-  // Add item to cart via Actions
-  addToCart(event){
-    dispatch(addToCart(sku, update));
-    dispatch(updateCartVisible(true));
-  }
 
-  // Select product variation via Actions
-  selectVariant(event){
-    dispatch(selectProduct(event.target.value));
-  }
 
   render() {
+
+    var shopStyle = {
+      backgroundImage: "url(" + Background + ")",
+      height: '980px',
+      width: '1000px',
+      backgroundRepeat: 'no-repeat',
+      marginLeft: '330px',
+      paddingTop: '10px'
+    };
     return (
-      <div>
-          <h1>{this.props.products.name}</h1>
-          <p>{this.props.products.description}</p>
+      <div style={shopStyle}>
+        <h1>Newest Products</h1>
+
       </div>
     );
   }
-
 }
 
 const mapStateToProps = state => {
+  console.log(state);
   return {
-    products: state.products
+    products: state.store.products
   }
 }
 

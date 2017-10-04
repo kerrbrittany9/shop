@@ -5,10 +5,17 @@ import Header from './Header';
 import { Switch, Route } from 'react-router-dom';
 
 
+
 function App(props) {
 
+  var appStyle = {
+    textAlign: 'center',
+    margin: "50px",
+    color: "pink",
+  };
+
     return (
-      <div>
+      <div style={appStyle}>
       <Header/>
         <Switch>
           <Route exact path="/cart" component={Cart}/>
