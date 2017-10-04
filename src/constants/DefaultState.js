@@ -1,6 +1,6 @@
 export const defaultState = {
-  store: [{
-    product: "this is a product",
+  cart: [{
+    product: "this is a product in your cart",
     sku: 123
   }]
 }
