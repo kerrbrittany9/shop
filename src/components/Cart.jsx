@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import CartStore from '../stores/CartStore';
 import CartActions from '../actions/CartActions';
 
 // Flux cart view
@@ -7,7 +8,22 @@ class Cart extends React.Component {
   constructor(props) {
     super(props);
   }
+  // Get initial state from stores
+  getInitialState: function() {
+    return getCartState();
+  },
 
+  // Add change listeners to stores
+  componentDidMount: function() {
+    ProductStore.addChangeListener(this._onChange);
+    CartStore.addChangeListener(this._onChange);
+  },
+
+  // Remove change listers from stores
+  componentWillUnmount: function() {
+    ProductStore.removeChangeListener(this._onChange);
+    CartStore.removeChangeListener(this._onChange);
+  },
 
   // Hide cart via Actions
   closeCart: function(){
@@ -57,5 +73,17 @@ const mapStateToProps = state => {
     masterCart: state
   };
 };
+
+// Method to retrieve state from Stores
+function getCartState() {
+  return {
+    product: ProductStore.getProduct(),
+    selectedProduct: ProductStore.getSelected(),
+    cartItems: CartStore.getCartItems(),
+    cartCount: CartStore.getCartCount(),
+    cartTotal: CartStore.getCartTotal(),
+    cartVisible: CartStore.getCartVisible()
+  };
+}
 
 export default connect(mapStateToProps)(Cart);

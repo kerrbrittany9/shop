@@ -19,36 +19,11 @@ function App(props) {
   }
 export default App;
 
-import CartStore from '../stores/CartStore';
-import ProductStore from '../stores/ProductStore';
 
-// Method to retrieve state from Stores
-function getCartState() {
-  return {
-    product: ProductStore.getProduct(),
-    selectedProduct: ProductStore.getSelected(),
-    cartItems: CartStore.getCartItems(),
-    cartCount: CartStore.getCartCount(),
-    cartTotal: CartStore.getCartTotal(),
-    cartVisible: CartStore.getCartVisible()
-  };
-}
-  // Get initial state from stores
-  getInitialState: function() {
-    return getCartState();
-  },
 
-  // Add change listeners to stores
-  componentDidMount: function() {
-    ProductStore.addChangeListener(this._onChange);
-    CartStore.addChangeListener(this._onChange);
-  },
 
-  // Remove change listers from stores
-  componentWillUnmount: function() {
-    ProductStore.removeChangeListener(this._onChange);
-    CartStore.removeChangeListener(this._onChange);
-  },
+
+
 
   // Render our child components, passing state via props
   render: function() {
@@ -59,12 +34,3 @@ function getCartState() {
       </div>
     );
   },
-
-  // Method to setState based upon Store changes
-  _onChange: function() {
-    this.setState(getCartState());
-  }
-
-});
-
-module.exports = App;

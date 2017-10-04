@@ -1,49 +1,39 @@
 import * as types from "./../constants/ActionTypes";
 
+export const requestData = () => ({
+  type: types.REQUEST_DATA,
+});
+
+export const receiveData = () => ({
+  type: types.RECEIVE_DATA,
+});
+
+export const selectProductRepo = () => ({
+  type: types.SELECT_PRODUCT,
+
+});
+
+export const addToCart = () => ({
+  type: types.CART_ADD,
+});
+
+export const removeFromCart = () => ({
+  type: types.CART_REMOVE,
+
+});
+
+export const updateCartVisible = () => ({
+  type: types.CART_VISIBLE,
+});
+
+
+
 //Define actions object
 
-var CartActions = {
-
-  //Receive initial product Data
-  receiveProduct: function(data) {
-    AppDispatcher.handleAction({
-      actionType: CartConstants.RECEIVE_DATA,
-      data: data
-    })
-  },
-  // Set currently selected product variation
-  selectProduct: function(index) {
-    AppDispatcher.handleAction({
-      actionType: CartConstants.SELECT_PRODUCT,
-      data: index
-    })
-  },
-
-  //Add item to CartAPI
-  addToCart: function(sku, update) {
-    AppDispatcher.handleAction({
-      actionType: CartConstants.CART_ADD,
-      sku: sku,
-      update: update
-    })
-  },
-
-  //Remove item from cart
-  removeFromCart: function(sku) {
-    AppDispatcher.handleAction({
-      actionType: CartConstants.CART_REMOVE,
-      sku: sku
-    })
-  },
-
-  //update cart visibility status
-  updateCartVisible: function(cartVisible) {
-    AppDispatcher.handleAction({
-      actionType: CartConstants.CART_VISIBLE,
-      cartVisible: cartVisible
-    })
-  }
-
-};
-
-module.exports = CartActions;
+export function getProductData() {
+  return function (dispatch) {
+    dispatch(requestData());
+  } return fetch()
+  var data = JSON.parse(localStorage.getItem('product'));
+  CartActions.receiveProduct(data);
+}

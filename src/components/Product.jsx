@@ -1,11 +1,28 @@
 import React from 'react';
 import CartActions from '../actions/CartActions';
+import ProductStore from '../stores/ProductStore';
 
 // Flux product view
 class Product extends React.Component {
   constructor(props) {
     super(props);
   }
+  // Get initial state from stores
+  getInitialState: function() {
+    return getCartState();
+  },
+
+  // Add change listeners to stores
+  componentDidMount: function() {
+    ProductStore.addChangeListener(this._onChange);
+    CartStore.addChangeListener(this._onChange);
+  },
+
+  // Remove change listers from stores
+  componentWillUnmount: function() {
+    ProductStore.removeChangeListener(this._onChange);
+    CartStore.removeChangeListener(this._onChange);
+  },
   // Add item to cart via Actions
   addToCart: function(event){
     var sku = this.props.selected.sku;
@@ -52,7 +69,7 @@ class Product extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    masterProducts: state 
+    masterProducts: state
   }
 }
 
