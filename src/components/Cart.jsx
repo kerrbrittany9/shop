@@ -1,49 +1,44 @@
-import React from 'react';
+import React from 'react'
 import { connect } from 'react-redux';
 import CartStore from '../stores/CartStore';
-import CartActions from '../actions/CartActions';
+
 
 // Flux cart view
 class Cart extends React.Component {
   constructor(props) {
     super(props);
   }
-  // Get initial state from stores
-  getInitialState: function() {
-    return getCartState();
-  },
 
   // Add change listeners to stores
-  componentDidMount: function() {
-    ProductStore.addChangeListener(this._onChange);
-    CartStore.addChangeListener(this._onChange);
-  },
+  componentDidMount(){
+    dispatch(addChangeListener(this._onChange));
+    dispatch(addChangeListener(this._onChange));
+  }
 
   // Remove change listers from stores
-  componentWillUnmount: function() {
-    ProductStore.removeChangeListener(this._onChange);
-    CartStore.removeChangeListener(this._onChange);
-  },
+  componentWillUnmount (){
+    dispatch(removeChangeListener(this._onChange));
+    dispatch(removeChangeListener(this._onChange));
+  }
 
   // Hide cart via Actions
-  closeCart: function(){
-    CartActions.updateCartVisible(false);
-  },
+  closeCart () {
+    dispatch(updateCartVisible(false));
+  }
 
   // Show cart via Actions
-  openCart: function(){
-    CartActions.updateCartVisible(true);
-  },
+  openCart () {
+    dispatch(updateCartVisible(true));
+  }
 
   // Remove item from Cart via Actions
-  removeFromCart: function(sku){
-   CartActions.removeFromCart(sku);
-   CartActions.updateCartVisible(false);
-  },
+  removeFromCart(sku){
+   dispatch(removeFromCart(sku));
+   dispatch(updateCartVisible(false));
+  }
 
 
   render() {
-    var self = this, products = this.props.products;
     return (
       <div className={"flux-cart " + (this.props.visible ? 'active' : '')}>
         <div className="mini-cart">
@@ -65,7 +60,7 @@ class Cart extends React.Component {
         <button type="button" className="view-cart" onClick={this.openCart} disabled={Object.keys(this.props.products).length > 0 ? "" : "disabled"}>View Cart ({this.props.count})</button>
       </div>
     );
-  },
+  }
 }
 
 const mapStateToProps = state => {
@@ -73,17 +68,5 @@ const mapStateToProps = state => {
     masterCart: state
   };
 };
-
-// Method to retrieve state from Stores
-function getCartState() {
-  return {
-    product: ProductStore.getProduct(),
-    selectedProduct: ProductStore.getSelected(),
-    cartItems: CartStore.getCartItems(),
-    cartCount: CartStore.getCartCount(),
-    cartTotal: CartStore.getCartTotal(),
-    cartVisible: CartStore.getCartVisible()
-  };
-}
 
 export default connect(mapStateToProps)(Cart);

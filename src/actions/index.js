@@ -34,6 +34,6 @@ export function getProductData() {
   return function (dispatch) {
     dispatch(requestData());
   } return fetch()
-  var data = JSON.parse(localStorage.getItem('product'));
+  let data = JSON.parse(localStorage.getItem('product'));
   CartActions.receiveProduct(data);
 }

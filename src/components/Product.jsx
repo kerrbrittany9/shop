@@ -1,5 +1,4 @@
 import React from 'react';
-import CartActions from '../actions/CartActions';
 import ProductStore from '../stores/ProductStore';
 
 // Flux product view
@@ -7,42 +6,29 @@ class Product extends React.Component {
   constructor(props) {
     super(props);
   }
-  // Get initial state from stores
-  getInitialState: function() {
-    return getCartState();
-  },
-
-  // Add change listeners to stores
-  componentDidMount: function() {
-    ProductStore.addChangeListener(this._onChange);
-    CartStore.addChangeListener(this._onChange);
-  },
 
   // Remove change listers from stores
-  componentWillUnmount: function() {
-    ProductStore.removeChangeListener(this._onChange);
-    CartStore.removeChangeListener(this._onChange);
-  },
+  componentWillUnmount() {
+    dispatch(removeChangeListener(this._onChange));
+    dispatch(removeChangeListener(this._onChange));
+  }
   // Add item to cart via Actions
-  addToCart: function(event){
+  addToCart(event){
     var sku = this.props.selected.sku;
     var update = {
       name: this.props.product.name,
       type: this.props.selected.type,
-      price: this.props.selected.price,
-    CartActions.addToCart(sku, update);
-    CartActions.updateCartVisible(true);
-  },
+      price: this.props.selected.price
+    }
+    dispatch(addToCart(sku, update));
+    dispatch(updateCartVisible(true));
+  }
 
   // Select product variation via Actions
-  selectVariant: function(event){
-    CartActions.selectProduct(event.target.value);
-  },
-
+  selectVariant(event){
+    dispatch(selectProduct(event.target.value));
+  }
   render() {
-    var ats = (this.props.selected.sku in this.props.cartitems) ?
-      this.props.selected.inventory - this.props.cartitems[this.props.selected.sku].quantity :
-      this.props.selected.inventory;
     return (
       <div className="flux-product">
         <img src={'img/' + this.props.product.image}/>
@@ -63,7 +49,7 @@ class Product extends React.Component {
         </div>
       </div>
     );
-  },
+  }
 
 }
 

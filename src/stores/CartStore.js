@@ -1,10 +1,8 @@
-var AppDispatcher = require('../dispatcher/AppDispatcher');
-var EventEmitter = require('events').EventEmitter;
-var CartConstants = require('../constants/CartConstants');
-var _ = require('underscore');
+import CartReducer from '../reducer/CartReducer';
+import constants from './../constants';
 
 // Define initial data points
-var _products = {}, _cartVisible = false;
+const { defaultState, types } = constants;
 
 // Add product to cart
 function add(sku, update) {
@@ -26,17 +24,17 @@ function removeItem(sku) {
 var CartStore = _.extend({}, EventEmitter.prototype, {
 
   // Return cart items
-  getCartItems: function() {
+  getCartItems() {
     return _products;
   },
 
   // Return # of items in cart
-  getCartCount: function() {
+  getCartCount() {
     return Object.keys(_products).length;
   },
 
   // Return cart cost total
-  getCartTotal: function() {
+  getCartTotal() {
     var total = 0;
     for(product in _products){
       if(_products.hasOwnProperty(product)){
@@ -47,58 +45,23 @@ var CartStore = _.extend({}, EventEmitter.prototype, {
   },
 
   // Return cart visibility state
-  getCartVisible: function() {
+  getCartVisible() {
     return _cartVisible;
   },
 
   // Emit Change event
-  emitChange: function() {
+  emitChange() {
     this.emit('change');
   },
 
   // Add change listener
-  addChangeListener: function(callback) {
+  addChangeListener(callback) {
     this.on('change', callback);
   },
 
   // Remove change listener
-  removeChangeListener: function(callback) {
+  removeChangeListener(callback) {
     this.removeListener('change', callback);
   }
 
 });
-
-// Register callback with AppDispatcher
-AppDispatcher.register(function(payload) {
-  var action = payload.action;
-  var text;
-
-  switch(action.actionType) {
-
-    // Respond to CART_ADD action
-    case CartConstants.CART_ADD:
-      add(action.sku, action.update);
-      break;
-
-    // Respond to CART_VISIBLE action
-    case CartConstants.CART_VISIBLE:
-      setCartVisible(action.cartVisible);
-      break;
-
-    // Respond to CART_REMOVE action
-    case CartConstants.CART_REMOVE:
-      removeItem(action.sku);
-      break;
-
-    default:
-      return true;
-  }
-
-  // If action was responded to, emit change event
-  CartStore.emitChange();
-
-  return true;
-
-});
-
-module.exports = CartStore;
