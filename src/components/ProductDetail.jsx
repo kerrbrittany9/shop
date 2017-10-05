@@ -12,13 +12,14 @@ function ProductDetail(props) {
       <img style={imageStyle} src={props.product.image}/>
       <h4>{props.product.product}</h4>
       <p>${props.product.price}</p>
-      <button onClick={() => props.handleAddToCart(props.product)}>Add to Cart</button>
+      <button onClick={() => props.handleAddToCart(props.product.sku)}>Add to Cart</button>
     </div>
   )
 }
 
 ProductDetail.PropTypes = {
   product: PropTypes.object,
+  sku: PropTypes.string,
   handleAddToCart: PropTypes.func
 };
 

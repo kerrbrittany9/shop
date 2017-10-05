@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import constants from './../constants';
 import PropTypes from 'prop-types';
 import { addToCart } from './../actions';
-import ProductDetail from './ProductDetail';
+import ProductList from './ProductList';
 
 
 class Product extends React.Component {
@@ -14,27 +14,22 @@ class Product extends React.Component {
 
   handleAddToCart(event) {
     event.preventDefault();
-    this.props.dispatch(addToCart(product.sku));
+    const { dispatch } = this.props;
+    this.props.dispatch(addToCart(product));
   }
 
   render() {
-    var matStyle = {
-    display: 'grid',
-    gridTemplateColumns: '30% 30% 30%',
-    gridGap: '3% 3%'
-  }
+    console.log(this.handleAddToCart);
 
     return (
       <div>
         <h1>Meet the Mats</h1>
-        <div style={matStyle}>
-        {this.props.products.map(function(product, sku) {
-          return <ProductDetail
-            key={product.sku}
-            product={product}
+        <div >
+          <ProductList
+            key={this.props.products.sku}
+            product={this.props.products}
             handleAddToCart={this.handleAddToCart}
             />
-        })}
         </div>
       </div>
     );
