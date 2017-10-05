@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import constants from './../constants';
 import PropTypes from 'prop-types';
-import Background from "./../../img/yoga-pose.jpg";
+
 
 class Product extends React.Component {
   constructor(props) {
@@ -12,17 +12,6 @@ class Product extends React.Component {
 
 
   render() {
-
-    var shopStyle = {
-      backgroundImage: "url(" + Background + ")",
-      height: '200px',
-      width: '1000px',
-      backgroundRepeat: 'no-repeat',
-      marginLeft: '230px',
-      marginRight: '100px',
-      paddingTop: '10px'
-    };
-
     var matStyle = {
     display: 'grid',
     gridTemplateColumns: '30% 30% 30%',
@@ -34,7 +23,7 @@ class Product extends React.Component {
       height: '200'
     }
     return (
-      <div style={shopStyle}>
+      <div>
         <div>
         <h1>Newest Products</h1>
         <ul>
