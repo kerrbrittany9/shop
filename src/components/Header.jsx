@@ -7,7 +7,8 @@ function Header(props) {
     margin: '10',
     height: '100',
     backgroundColor: 'pink',
-    color: 'white'
+    color: 'white',
+    marginTop: '5px'
   }
 
   return (

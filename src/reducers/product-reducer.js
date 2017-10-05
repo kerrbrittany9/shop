@@ -11,7 +11,9 @@ const productReducer = (state = defaultState, action) => {
         newState = {
           inCart: true,
           sku: v4(),
-          product: action.product
+          product: action.product,
+          image: action.image,
+          price: action.price
         };
         return newState;
       default:
