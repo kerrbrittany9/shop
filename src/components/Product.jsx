@@ -13,21 +13,20 @@ class Product extends React.Component {
   }
 
   handleAddToCart(event) {
-    event.preventDefault();
     const { dispatch } = this.props;
-    this.props.dispatch(addToCart(product));
+    const { } = this.props;
+    console.log(sku);
+    this.props.dispatch(addToCart());
   }
 
   render() {
-    console.log(this.handleAddToCart);
-
     return (
       <div>
         <h1>Meet the Mats</h1>
         <div >
           <ProductList
-            key={this.props.products.sku}
             product={this.props.products}
+            key={this.props.products.sku}
             handleAddToCart={this.handleAddToCart}
             />
         </div>
