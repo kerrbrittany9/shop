@@ -1,9 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import constants from './../constants';
 import PropTypes from 'prop-types';
 import { addToCart } from './../actions';
 import ProductList from './ProductList';
+import * as types from "./../constants/ActionTypes";
+
 
 
 class Product extends React.Component {
@@ -14,9 +15,14 @@ class Product extends React.Component {
 
   handleAddToCart(event) {
     const { dispatch } = this.props;
-    const { } = this.props;
-    console.log(sku);
-    this.props.dispatch(addToCart());
+    const action = {
+      type: types.ADD_CART,
+      image: this.props.image,
+      price: this.props.price,
+      sku: this.props.products.sku,
+      name: this.props.products.name
+    }
+    dispatch(action);
   }
 
   render() {
