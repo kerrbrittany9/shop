@@ -7,6 +7,18 @@ const { defaultState, types } = constants;
 const productReducer = (state = defaultState, action) => {
   let newState;
     switch (action.type) {
+      case 'ADD_PRODUCT':
+        const { product, image, price, sku } = action;
+        return [
+          ... state,
+          {
+            product: product,
+            image: image,
+            sku: sku,
+            price: price
+          }
+        ]
+        return newState;
       case types.CART_ADD:
         newState = {
           inCart: true,

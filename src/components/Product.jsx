@@ -7,6 +7,7 @@ import * as types from "./../constants/ActionTypes";
 
 
 
+
 class Product extends React.Component {
   constructor(props) {
     super(props);
@@ -29,12 +30,13 @@ class Product extends React.Component {
     return (
       <div>
         <h1>Meet the Mats</h1>
-        <div >
+        <div>
           <ProductList
             product={this.props.products}
             key={this.props.products.sku}
             handleAddToCart={this.handleAddToCart}
             />
+
         </div>
       </div>
     );

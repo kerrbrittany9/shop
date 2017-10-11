@@ -1,0 +1,62 @@
+
+import React from "react";
+import PropTypes from "prop-types";
+import { connect } from 'react-redux';
+import constants from "./../constants";
+import { v4 } from "uuid";
+
+class Admin extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleNewProductFormSubmission = this.handleNewProductFormSubmission.bind(this);
+  }
+
+  handleNewProductFormSubmission(event) {
+    event.preventDefault();
+    const { _product, _image, _price } = this.refs;
+    const { dispatch } = this.props;
+    const action = {
+      type: constants.ADD_PRODUCT,
+      sku: v4(),
+      product: _product.value,
+      image: _image.value,
+      price: _price.value
+    }
+    dispatch(action);
+    this.props.hideFormAfterSubmission();
+  }
+
+
+  render() {
+    return (
+      <div>
+        <form onSubmit={this.handleNewProductFormSubmission}>
+          <input
+            ref="_product"
+            type="text"
+            id="product"
+            placeholder="Product Name"/>
+          <input
+            ref="_image"
+            type="text"
+            id="image"
+            placeholder="Product Image"/>
+          <textarea
+            ref="_price"
+            type="text"
+            id="price"
+            placeholder="Product Price"/>
+          <button type="submit">Add Product</button>
+        </form>
+      </div>
+    );
+  }
+
+}
+
+Admin.propTypes = {
+  hideFormAfterSubmission: PropTypes.func
+}
+
+
+export default connect()(Admin);
