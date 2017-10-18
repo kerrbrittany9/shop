@@ -3,32 +3,18 @@ import Product from './Product';
 import Cart from './Cart';
 import Header from './Header';
 import { Switch, Route } from 'react-router-dom';
-import Background from "./../../img/yoga-pose.jpg";
+import styles from './../styles/App.css';
+
 
 
 function App(props) {
 
-  var appStyle = {
-    textAlign: 'center',
-    margin: "50px",
-    color: "pink",
-  }
-  var shopStyle = {
-    backgroundImage: "url(" + Background + ")",
-    height: '200px',
-    width: '1000px',
-    backgroundRepeat: 'no-repeat',
-    marginLeft: '230px',
-    marginRight: '100px',
-    paddingTop: '10px'
-  }
-
   return (
-    <div style={appStyle}>
+    <div className = {styles.app}>
     <Header/>
-      <div style={shopStyle}>
+    <div>
         <h1>om</h1>
-      </div>
+    </div>
       <Switch>
         <Route exact path="/cart" component={Cart}/>
         <Route path="/products" component={Product}/>

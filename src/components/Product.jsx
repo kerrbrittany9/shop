@@ -5,9 +5,6 @@ import { addToCart } from './../actions';
 import ProductList from './ProductList';
 import * as types from "./../constants/ActionTypes";
 
-
-
-
 class Product extends React.Component {
   constructor(props) {
     super(props);

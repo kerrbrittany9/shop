@@ -1,0 +1,18 @@
+* { text-align: center; margin: 10px; color: pink; font-family: 'Poppins', serif;}
+
+.app {
+  background-image: url("./../../img/yoga-pose.jpg");
+  height: 500px;
+  width: 1000px;
+  background-repeat: no-repeat;
+  margin-left: 230px;
+  margin-right: 100px;
+  display: block;
+}
+.header {
+  margin: 10px;
+  height: 100px;
+  background-color: pink;
+  color: white;
+  margin-top: 5px
+}

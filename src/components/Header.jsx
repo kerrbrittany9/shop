@@ -1,18 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import styles from './../styles/App.css';
 
 function Header(props) {
 
-  var headerStyle = {
-    margin: '10',
-    height: '100',
-    backgroundColor: 'pink',
-    color: 'white',
-    marginTop: '5px'
-  }
+
 
   return (
-    <div style={headerStyle}>
+    <div className = { styles.header }>
       <h1>Shop Yoga</h1>
       <br/>
       <Link to="/cart">Cart</Link> | <Link to="/products">Shop</Link>
