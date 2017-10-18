@@ -5,6 +5,7 @@ import { createStore } from "redux";
 import { Provider } from "react-redux";
 import reducer from './reducers/product-reducer';
 import { HashRouter } from 'react-router-dom';
+import styles from './styles/styles.css';
 
 const store = createStore(reducer);
 
